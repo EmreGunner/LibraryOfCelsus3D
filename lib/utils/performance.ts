@@ -57,10 +57,11 @@ export function detectDeviceCapability() {
   )
 
   // Check for low-end indicators
+  const deviceMemory = (navigator as any).deviceMemory as number | undefined
   const isLowEnd =
     isMobile ||
     navigator.hardwareConcurrency < 4 ||
-    (navigator.deviceMemory && navigator.deviceMemory < 4)
+    (deviceMemory && deviceMemory < 4)
 
   if (isLowEnd) return "low"
   if (isMobile) return "medium"
