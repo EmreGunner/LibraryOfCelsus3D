@@ -68,7 +68,10 @@ export default function BookReader({ book, language, onClose }: BookReaderProps)
     ? book.originalFile 
     : book.translations[language]
 
-    const hasEmbed = (currentFile && 'embedUrl' in currentFile && currentFile.embedUrl) || (currentFile?.fileUrl?.includes("archive.org"))
+  const embedUrl = (currentFile && 'embedUrl' in currentFile && currentFile.embedUrl) || 
+    (currentFile?.fileUrl?.includes("archive.org") 
+      ? currentFile.fileUrl.replace("/details/", "/embed/")
+      : null)
 
   return (
     <div className="fixed inset-0 bg-black bg-opacity-95 flex flex-col z-50">
