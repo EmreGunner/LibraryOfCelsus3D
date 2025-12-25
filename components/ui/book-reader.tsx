@@ -38,7 +38,7 @@ export default function BookReader({ book, language, onClose }: BookReaderProps)
     }
 
     // Check if it's an Archive.org embed
-    if (currentFile.embedUrl || (currentFile.fileUrl && currentFile.fileUrl.includes("archive.org"))) {
+    if ((currentFile && 'embedUrl' in currentFile && currentFile.embedUrl) || (currentFile.fileUrl && currentFile.fileUrl.includes("archive.org"))) {
       setLoading(false)
       return // Will render iframe
     }
