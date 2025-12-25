@@ -58,8 +58,7 @@ export default function BookPopup({ book, onClose }: BookPopupProps) {
     }
   }
   
-  const hasEmbed = currentFile?.embedUrl || (currentFile?.fileUrl?.includes("archive.org"))
-
+  const hasEmbed = (currentFile && 'embedUrl' in currentFile && currentFile.embedUrl) || (currentFile?.fileUrl?.includes("archive.org"))
   return (
     <div className="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50 p-4" onClick={onClose}>
       <div 
