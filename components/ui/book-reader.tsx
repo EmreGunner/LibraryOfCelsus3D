@@ -37,6 +37,12 @@ export default function BookReader({ book, language, onClose }: BookReaderProps)
       return
     }
 
+    // Check if it's an Archive.org embed
+    if (currentFile.embedUrl || (currentFile.fileUrl && currentFile.fileUrl.includes("archive.org"))) {
+      setLoading(false)
+      return // Will render iframe
+    }
+
     // For text files, fetch and display
     if (currentFile.fileType === "text") {
       fetch(currentFile.fileUrl)
@@ -58,31 +64,53 @@ export default function BookReader({ book, language, onClose }: BookReaderProps)
 
   if (!book) return null
 
+  const currentFile = language === "original" 
+    ? book.originalFile 
+    : book.translations[language]
+
+  const embedUrl = currentFile?.embedUrl || 
+    (currentFile?.fileUrl?.includes("archive.org") 
+      ? currentFile.fileUrl.replace("/details/", "/embed/")
+      : null)
+
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-90 flex flex-col z-50">
-      <div className="bg-white p-4 flex justify-between items-center">
-        <h2 className="text-xl font-bold">{book.title}</h2>
+    <div className="fixed inset-0 bg-black bg-opacity-95 flex flex-col z-50">
+      <div className="bg-gradient-to-r from-amber-900 to-amber-700 p-4 flex justify-between items-center shadow-lg">
+        <h2 className="text-xl font-bold text-white">{book.title}</h2>
         <button
           onClick={onClose}
-          className="text-gray-500 hover:text-gray-700 text-2xl px-4"
+          className="text-white hover:text-gray-200 text-3xl px-4 font-bold"
         >
           ×
         </button>
       </div>
-      <div className="flex-1 overflow-y-auto bg-white p-6">
+      <div className="flex-1 overflow-hidden bg-gray-100">
         {loading && (
-          <div className="text-center py-20">
+          <div className="flex items-center justify-center h-full">
             <div className="text-lg">Loading...</div>
           </div>
         )}
         {error && (
-          <div className="text-center py-20 text-red-600">
+          <div className="flex items-center justify-center h-full text-red-600">
             <div className="text-lg">{error}</div>
           </div>
         )}
-        {!loading && !error && (
-          <div className="max-w-4xl mx-auto">
-            <pre className="whitespace-pre-wrap font-serif text-base leading-relaxed">
+        {!loading && !error && embedUrl && (
+          <div className="w-full h-full">
+            <iframe
+              src={embedUrl}
+              width="100%"
+              height="100%"
+              frameBorder="0"
+              allowFullScreen
+              className="border-0"
+              allow="fullscreen"
+            />
+          </div>
+        )}
+        {!loading && !error && !embedUrl && (
+          <div className="max-w-4xl mx-auto p-6 h-full overflow-y-auto">
+            <pre className="whitespace-pre-wrap font-serif text-base leading-relaxed bg-white p-6 rounded shadow">
               {content}
             </pre>
           </div>
@@ -91,4 +119,3 @@ export default function BookReader({ book, language, onClose }: BookReaderProps)
     </div>
   )
 }
-

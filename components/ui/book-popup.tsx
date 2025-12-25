@@ -44,12 +44,21 @@ export default function BookPopup({ book, onClose }: BookPopupProps) {
 
   const handleDownload = () => {
     if (currentFile) {
-      const link = document.createElement("a")
-      link.href = currentFile.fileUrl
-      link.download = `${book.title}.${currentFile.fileType}`
-      link.click()
+      // For Archive.org links, open in new tab
+      if (currentFile.fileUrl.includes("archive.org")) {
+        window.open(currentFile.fileUrl, "_blank")
+      } else {
+        const link = document.createElement("a")
+        link.href = currentFile.fileUrl
+        link.download = `${book.title}.${currentFile.fileType}`
+        document.body.appendChild(link)
+        link.click()
+        document.body.removeChild(link)
+      }
     }
   }
+  
+  const hasEmbed = currentFile?.embedUrl || (currentFile?.fileUrl?.includes("archive.org"))
 
   return (
     <div className="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50 p-4" onClick={onClose}>
@@ -58,10 +67,15 @@ export default function BookPopup({ book, onClose }: BookPopupProps) {
         onClick={(e) => e.stopPropagation()}
       >
         <div className="flex justify-between items-start mb-4">
-          <h2 className="text-3xl font-bold text-gray-900">{book.title}</h2>
+          <div>
+            <h2 className="text-3xl font-bold text-gray-900 mb-2">{book.title}</h2>
+            {book.corePurpose && (
+              <p className="text-sm text-amber-700 font-semibold italic">Core Purpose: {book.corePurpose}</p>
+            )}
+          </div>
           <button
             onClick={onClose}
-            className="text-gray-500 hover:text-gray-700 text-2xl"
+            className="text-gray-500 hover:text-gray-700 text-2xl font-bold"
           >
             ×
           </button>
@@ -116,13 +130,13 @@ export default function BookPopup({ book, onClose }: BookPopupProps) {
           <div className="flex gap-4">
             <button
               onClick={handleDownload}
-              className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700"
+              className="px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 font-semibold shadow-md transition-all"
             >
-              Download {currentFile?.fileType.toUpperCase()}
+              {hasEmbed ? "Open Archive" : `Download ${currentFile?.fileType.toUpperCase()}`}
             </button>
             <button
               onClick={() => setShowReader(true)}
-              className="px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700"
+              className="px-6 py-3 bg-gradient-to-r from-green-600 to-green-700 text-white rounded-lg hover:from-green-700 hover:to-green-800 font-semibold shadow-md transition-all"
             >
               Read Now
             </button>

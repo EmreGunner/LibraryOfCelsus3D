@@ -51,10 +51,10 @@ export default function DoorTrigger({ position, onEnter }: DoorTriggerProps) {
 
   return (
     <group ref={triggerRef} position={position}>
-      {/* Rectangular door shape - realistic door size (1m wide, 2.5m tall) */}
+      {/* Main door frame - black wooden door */}
       <Box
-        args={[1, 2.5, 0.15]}
-        position={[0, 1.25, 0]}
+        args={[1.2, 2.8, 0.15]} // Width, Height, Depth - realistic door size
+        position={[0, 1.4, 0]}
         onPointerOver={() => {
           document.body.style.cursor = "pointer"
         }}
@@ -63,27 +63,53 @@ export default function DoorTrigger({ position, onEnter }: DoorTriggerProps) {
         }}
       >
         <meshStandardMaterial 
-          color={isNear ? "#00ff00" : "#ffaa00"} 
-          emissive={isNear ? "#00ff00" : "#ffaa00"}
-          emissiveIntensity={0.6}
-          transparent
-          opacity={0.85}
+          color="#1a1a1a" // Very dark black
+          metalness={0.1}
+          roughness={0.8}
         />
       </Box>
       
-      {/* Text directly on the door rectangle - smaller font to fit */}
+      {/* Door panels for realistic look */}
+      <Box
+        args={[1.0, 0.4, 0.02]}
+        position={[0, 1.8, 0.08]}
+      >
+        <meshStandardMaterial color="#0a0a0a" roughness={0.9} />
+      </Box>
+      <Box
+        args={[1.0, 0.4, 0.02]}
+        position={[0, 1.4, 0.08]}
+      >
+        <meshStandardMaterial color="#0a0a0a" roughness={0.9} />
+      </Box>
+      <Box
+        args={[1.0, 0.4, 0.02]}
+        position={[0, 1.0, 0.08]}
+      >
+        <meshStandardMaterial color="#0a0a0a" roughness={0.9} />
+      </Box>
+      
+      {/* Door handle */}
+      <Box
+        args={[0.05, 0.15, 0.05]}
+        position={[0.45, 1.2, 0.1]}
+      >
+        <meshStandardMaterial color="#333333" metalness={0.8} roughness={0.2} />
+      </Box>
+      
+      {/* Text on door - black text with white outline */}
       <Text
-        position={[0, 1.25, 0.08]}
-        fontSize={0.25}
-        color="white"
+        position={[0, 1.4, 0.09]}
+        fontSize={0.2}
+        color="#000000"
         anchorX="center"
         anchorY="middle"
-        outlineWidth={0.03}
-        outlineColor="black"
-        maxWidth={0.9}
+        outlineWidth={0.02}
+        outlineColor="#ffffff"
+        maxWidth={0.85}
         textAlign="center"
       >
-        Press F to enter to library
+        Press F to enter
       </Text>
     </group>
   )

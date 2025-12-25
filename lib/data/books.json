@@ -1,118 +1,41 @@
 [
   {
-    "id": "book-1",
-    "title": "On Architecture",
-    "era": "110 AD",
-    "originalLanguage": "Greek",
-    "author": "Vitruvius",
-    "provenance": "Discovered in Ephesus library archives",
-    "summary": "A treatise on architectural principles and engineering practices from the classical era, covering temple construction, materials, and proportions.",
-    "tags": ["architecture", "engineering", "classical"],
-    "position": { "x": 2.5, "y": 1.2, "z": -3.1 },
+    "id": "quran",
+    "title": "Qurʾān (Arabic, Uthmani text)",
+    "era": "7th Century",
+    "originalLanguage": "Classical Arabic",
+    "author": "Divine Revelation",
+    "provenance": "Philadelphia Museum of Art",
+    "corePurpose": "Law, deterrence, social order",
+    "summary": "The holy book of Islam, containing the word of God as revealed to the Prophet Muhammad. This manuscript features the Uthmani text, one of the earliest standardized versions of the Quranic text.",
+    "tags": ["religion", "law", "sacred", "islam"],
+    "position": { "x": 0.5, "y": 1.0, "z": -1.5 },
+    "scale": 1,
     "originalFile": {
-      "fileUrl": "/books/book-1/original.pdf",
-      "fileType": "pdf"
+      "fileUrl": "https://archive.org/details/quran-manuscript-philadelphia-museum-of-art-department-of-south-asian-art-2017-232-1",
+      "fileType": "pdf",
+      "embedUrl": "https://archive.org/embed/quran-manuscript-philadelphia-museum-of-art-department-of-south-asian-art-2017-232-1"
     },
-    "translations": {
-      "en": {
-        "title": "On Architecture (English)",
-        "fileUrl": "/books/book-1/translated-en.pdf",
-        "fileType": "pdf"
-      },
-      "la": {
-        "title": "De Architectura",
-        "fileUrl": "/books/book-1/translated-la.pdf",
-        "fileType": "pdf"
-      }
-    }
+    "translations": {}
   },
   {
-    "id": "book-2",
-    "title": "The Histories",
-    "era": "110 AD",
-    "originalLanguage": "Greek",
-    "author": "Herodotus",
-    "provenance": "Ephesus library collection",
-    "summary": "An account of the Greco-Persian Wars and the cultures of the ancient world, considered one of the foundational works of history.",
-    "tags": ["history", "war", "culture"],
-    "position": { "x": -2.1, "y": 1.2, "z": -3.5 },
+    "id": "torah",
+    "title": "Torah / Tevrat (Hebrew, Masoretic)",
+    "era": "Ancient",
+    "originalLanguage": "Biblical Hebrew",
+    "author": "Divine Revelation",
+    "provenance": "British Library",
+    "corePurpose": "Law-first survival",
+    "summary": "The first five books of the Hebrew Bible, containing the foundational laws and narratives of Judaism. This Masoretic text represents the traditional Hebrew version preserved by Jewish scribes.",
+    "tags": ["religion", "law", "sacred", "judaism"],
+    "position": { "x": -0.5, "y": 1.0, "z": -1.5 },
+    "scale": 0.06,
     "originalFile": {
-      "fileUrl": "/books/book-2/original.pdf",
-      "fileType": "pdf"
+      "fileUrl": "https://archive.org/details/BL_Or_2349_Torah",
+      "fileType": "pdf",
+      "embedUrl": "https://archive.org/embed/BL_Or_2349_Torah"
     },
-    "translations": {
-      "en": {
-        "title": "The Histories (English)",
-        "fileUrl": "/books/book-2/translated-en.pdf",
-        "fileType": "pdf"
-      }
-    }
-  },
-  {
-    "id": "book-3",
-    "title": "Meditations",
-    "era": "110 AD",
-    "originalLanguage": "Greek",
-    "author": "Marcus Aurelius",
-    "provenance": "Personal collection donated to library",
-    "summary": "Personal reflections on Stoic philosophy, virtue, and the nature of the universe, written as a private journal.",
-    "tags": ["philosophy", "stoicism", "reflection"],
-    "position": { "x": 0, "y": 1.2, "z": -4.0 },
-    "originalFile": {
-      "fileUrl": "/books/book-3/original.pdf",
-      "fileType": "pdf"
-    },
-    "translations": {
-      "en": {
-        "title": "Meditations (English)",
-        "fileUrl": "/books/book-3/translated-en.pdf",
-        "fileType": "pdf"
-      }
-    }
-  },
-  {
-    "id": "book-4",
-    "title": "The Aeneid",
-    "era": "110 AD",
-    "originalLanguage": "Latin",
-    "author": "Virgil",
-    "provenance": "Roman imperial library copy",
-    "summary": "An epic poem telling the legendary story of Aeneas, a Trojan who traveled to Italy and became the ancestor of the Romans.",
-    "tags": ["poetry", "epic", "mythology"],
-    "position": { "x": 3.2, "y": 1.2, "z": -2.8 },
-    "originalFile": {
-      "fileUrl": "/books/book-4/original.pdf",
-      "fileType": "pdf"
-    },
-    "translations": {
-      "en": {
-        "title": "The Aeneid (English)",
-        "fileUrl": "/books/book-4/translated-en.pdf",
-        "fileType": "pdf"
-      }
-    }
-  },
-  {
-    "id": "book-5",
-    "title": "Natural History",
-    "era": "110 AD",
-    "originalLanguage": "Latin",
-    "author": "Pliny the Elder",
-    "provenance": "Scientific collection archive",
-    "summary": "An encyclopedia covering topics from astronomy to zoology, documenting the natural world as understood in the first century.",
-    "tags": ["science", "encyclopedia", "nature"],
-    "position": { "x": -3.0, "y": 1.2, "z": -2.5 },
-    "originalFile": {
-      "fileUrl": "/books/book-5/original.pdf",
-      "fileType": "pdf"
-    },
-    "translations": {
-      "en": {
-        "title": "Natural History (English)",
-        "fileUrl": "/books/book-5/translated-en.pdf",
-        "fileType": "pdf"
-      }
-    }
+    "translations": {}
   }
 ]
 

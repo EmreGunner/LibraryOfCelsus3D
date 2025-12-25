@@ -12,35 +12,24 @@ export default function LibraryModel() {
     const cloned = scene.clone()
     cloned.traverse((child) => {
       if (child instanceof THREE.Mesh) {
-        child.castShadow = true
-        child.receiveShadow = true
+        child.castShadow = false
+        child.receiveShadow = false
         
-        // Fix materials for proper rendering
+        // Fix materials for proper rendering - keep it simple
         if (child.material) {
           const materials = Array.isArray(child.material) ? child.material : [child.material]
           
           materials.forEach((mat) => {
             if (mat instanceof THREE.MeshStandardMaterial || mat instanceof THREE.MeshPhysicalMaterial) {
               mat.needsUpdate = true
-              // Ensure proper color space
+              
+              // Ensure proper color space for textures
               if (mat.map) {
                 mat.map.colorSpace = "srgb"
                 mat.map.needsUpdate = true
-                mat.map.flipY = false
               }
-              if (mat.normalMap) {
-                mat.normalMap.needsUpdate = true
-                mat.normalMap.flipY = false
-              }
-              if (mat.roughnessMap) {
-                mat.roughnessMap.needsUpdate = true
-                mat.roughnessMap.flipY = false
-              }
-              if (mat.metalnessMap) {
-                mat.metalnessMap.needsUpdate = true
-                mat.metalnessMap.flipY = false
-              }
-              // Fix rendering issues
+              
+              // Keep original material properties - don't override
               mat.side = THREE.FrontSide
               mat.flatShading = false
             }
@@ -50,7 +39,6 @@ export default function LibraryModel() {
         // Ensure geometry is properly set up
         if (child.geometry) {
           child.geometry.computeVertexNormals()
-          child.geometry.computeBoundingBox()
         }
       }
     })
